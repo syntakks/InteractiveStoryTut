@@ -37,6 +37,7 @@ extension Page {
 class PageController: UIViewController {
     
     var page: Page?
+    let soundEffectsPlayer = SoundEffectsPlayer()
     
     // MARK: - User Interface Properties
     lazy var artworkView: UIImageView = {
@@ -124,6 +125,7 @@ class PageController: UIViewController {
             let firstChoice = page.firstChoice {
             let nextPage = firstChoice.page
             let pageController = PageController(page: nextPage)
+            soundEffectsPlayer.playSound(for: nextPage.story)
             navigationController?.pushViewController(pageController, animated: true)
         }
     }
@@ -133,6 +135,7 @@ class PageController: UIViewController {
             let secondChoice = page.secondChoice {
             let nextPage = secondChoice.page
             let pageController = PageController(page: nextPage)
+            soundEffectsPlayer.playSound(for: nextPage.story)
             navigationController?.pushViewController(pageController, animated: true)
         }
     }
